@@ -1,6 +1,21 @@
-(ns budget-calculator-api.core)
+(ns budget-calculator-api.core
+  (:require  [budget-calculator-api.components.server :as server]
+             [com.stuartsierra.component :as component]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+
+(defn system-map [config]
+  (component/system-map
+    :http (server/new-server (:port config))))
+
+
+(defn start-all []
+  (def system (component/start (system-map {:port 8000}))))
+
+
+(defn stop-all []
+  (component/stop system))
+
+
+(defn -main
+  [& args]
+  (start-all))
