@@ -7,6 +7,8 @@
                  [ring/ring-core "1.7.1"]
                  [metosin/reitit-ring "0.4.2"]
                  [ring/ring-jetty-adapter "1.7.1"]
+                 [prismatic/schema "1.1.12"]
+                 [cheshire "5.9.0"]
                  [ring/ring-json "0.4.0"]
                  [com.stuartsierra/component "0.3.2"]]
   :repl-options {:init-ns budget-calculator-api.core}
