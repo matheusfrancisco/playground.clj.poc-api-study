@@ -11,8 +11,8 @@
 
   storage-client/StorageClient
   (read-all [_this] @storage)
-  (put! [_this update-fn] (swap! storage update-fn))
-  (clear-all! [_this] (reset! storage {})))
+  (put! [_this update-fn] (update-fn swap! storage))
+  (clear-all! [_this] (reset! storage [])))
 
 (defn new-in-memory []
   (->InMemoryStorage (atom [{:id 1
