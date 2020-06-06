@@ -10,6 +10,7 @@
                  [prismatic/schema "1.1.12"]
                  [cheshire "5.9.0"]
                  [ring/ring-json "0.4.0"]
+                 [ring/ring-mock "0.3.2"]
                  [com.stuartsierra/component "0.3.2"]]
   :repl-options {:init-ns budget-calculator-api.core}
   :main ^:skip-aot budget-calculator-api.core

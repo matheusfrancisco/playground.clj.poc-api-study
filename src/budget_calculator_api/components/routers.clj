@@ -7,6 +7,9 @@
 
 
 (defn test-get
+  "
+      WIP only to understand how component injection works
+  "
   [request]
   (def storage (:storage request))
   (storage-client/put! storage #(%1 %2 conj {:id 3 :nome "Ola" :ammount "100 moedinhas"}))

@@ -4,6 +4,9 @@
              [com.stuartsierra.component :as component]))
 
 
+(def system (atom nil))
+
+
 (defn system-map [config]
   (component/system-map
     :storage (storage/new-in-memory)
@@ -17,6 +20,12 @@
 
 (defn stop-all []
   (component/stop system))
+
+
+(defn start-test
+  []
+  (println "Starting [TEST] server...")
+  (system-map {:port 8080}))
 
 
 (defn -main
