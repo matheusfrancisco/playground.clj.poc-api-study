@@ -10,28 +10,29 @@
   (fn [req]
     (f (assoc req :storage storage))))
 
-(defn create-server [port storage]
+(defn create-server [port storage join]
   (run-jetty (-> #'budget-calculator-api.components.routers/router
                  (wrap-storage storage)
                  (wrap-json-body {:keywords? true})
-                 (wrap-json-response)) {:port port :storage storage}))
+                 (wrap-json-response)) {:port port :storage storage :join? join}))
 
-(defn stop [server]
-  ((:close server)))
+(defn stopped [server]
+  ((.stop server)
+   (.join server)))
 
 
-(defrecord Server [port]
+(defrecord Server [port join]
   component/Lifecycle
 
   (start [component]
-    (let [server (create-server port (:storage component)) ]
+    (let [server (create-server port (:storage component) join)]
       (assoc component :web-server server) component))
 
   (stop [component]
-    (stop (:web-server component))
-    (assoc component :web-server nil)))
+    (stopped (:web-server component))
+    (dissoc component :web-server)))
 
 
-(defn new-server [port]
-  (map->Server {:port port}))
+(defn new-server [port join]
+  (map->Server {:port port :join join}))
 

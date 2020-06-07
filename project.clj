@@ -8,6 +8,7 @@
                  [metosin/reitit-ring "0.4.2"]
                  [ring/ring-jetty-adapter "1.7.1"]
                  [prismatic/schema "1.1.12"]
+                 [clj-http "3.10.1"]
                  [cheshire "5.9.0"]
                  [ring/ring-json "0.4.0"]
                  [ring/ring-mock "0.3.2"]
