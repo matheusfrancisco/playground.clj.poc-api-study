@@ -17,8 +17,7 @@
                  (wrap-json-response)) {:port port :storage storage :join? join}))
 
 (defn stopped [server]
-  ((.stop server)
-   (.join server)))
+  (.stop server))
 
 
 (defrecord Server [port join]
@@ -26,7 +25,7 @@
 
   (start [component]
     (let [server (create-server port (:storage component) join)]
-      (assoc component :web-server server) component))
+      (assoc component :web-server server)))
 
   (stop [component]
     (stopped (:web-server component))

@@ -21,8 +21,7 @@
   (component/stop  system))
 
 
-(defn start-test
-  []
+(defn start-test []
   (println "Starting [TEST] server...")
   (system-map {:port 8080 :join false}))
 
