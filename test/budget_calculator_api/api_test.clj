@@ -1,7 +1,6 @@
 (ns budget-calculator-api.api-test
   (:require [clojure.test :refer :all]
             [com.stuartsierra.component :as component]
-            [budget-calculator-api.components.routers :as routes]
             [clj-http.client :as client]
             [budget-calculator-api.components.server :as ss]
             [budget-calculator-api.core :refer :all]))

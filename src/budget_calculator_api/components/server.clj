@@ -1,8 +1,8 @@
 (ns budget-calculator-api.components.server
   (:require  [ring.adapter.jetty :refer [run-jetty]]
              [reitit.ring :as ring]
+             [budget-calculator-api.controllers :as c]
              [com.stuartsierra.component :as component]
-             [budget-calculator-api.components.routers :as r]
              [ring.middleware.json :refer [wrap-json-body wrap-json-response]]))
 
 
@@ -11,7 +11,7 @@
     (f (assoc req :storage storage))))
 
 (defn create-server [port storage join]
-  (run-jetty (-> #'budget-calculator-api.components.routers/router
+  (run-jetty (-> #'budget-calculator-api.controllers/router
                  (wrap-storage storage)
                  (wrap-json-body {:keywords? true})
                  (wrap-json-response)) {:port port :storage storage :join? join}))
